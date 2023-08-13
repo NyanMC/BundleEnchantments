@@ -28,4 +28,9 @@ public class BundleCapacityEnchantment extends Enchantment {
     public int getMaxLevel() {
         return 4;
     }
+
+    @Override
+    public boolean isTreasureOnly() {
+        return true;
+    }
 }
