@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.chromanyan.bundleenchantments.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "bundleenchantments.refmap.json",
+  "mixins": [
+    "MixinBundleItem"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}
