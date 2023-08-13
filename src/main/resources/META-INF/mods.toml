@@ -42,7 +42,7 @@ authors="ChromaNyan" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-ChromaNyan please add details
+Adds a bundle capacity enchantment to bundles, increasing the amount of items one can hold.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.bundleenchantments]] #optional
