@@ -26,6 +26,10 @@ public class MixinBundleItem {
         return BundleItem.MAX_WEIGHT + (stack.getEnchantmentLevel(ModEnchantments.BUNDLE_CAPACITY.get()) * 16);
     }
 
+    private static boolean isBundleEnchanted(ItemStack stack) {
+        return stack.getEnchantmentLevel(ModEnchantments.BUNDLE_CAPACITY.get()) > 0;
+    }
+
     @ModifyConstant(method = "getFullnessDisplay", constant = @Constant(floatValue = 64.0F))
     private static float modifyGetFullnessDisplay(float constant, ItemStack p_150767_) {
         return (float) getMaxWeight(p_150767_);
@@ -55,7 +59,7 @@ public class MixinBundleItem {
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType") // i don't have a choice
     @ModifyVariable(method = "add", at = @At("STORE"))
     private static Optional<CompoundTag> modifyOptional(Optional<CompoundTag> value, ItemStack p_150764_, ItemStack p_150765_) {
-        if (p_150764_.getEnchantmentLevel(ModEnchantments.BUNDLE_CAPACITY.get()) > 0 && value.isPresent()) { // only step in to stop problems you caused
+        if (isBundleEnchanted(p_150764_) && value.isPresent()) { // only step in to stop problems you caused
             CompoundTag compoundtag1 = value.get();
             ItemStack itemstack = ItemStack.of(compoundtag1);
             if (itemstack.getCount() + p_150765_.getCount() > itemstack.getMaxStackSize())
