@@ -1,5 +1,6 @@
 package com.chromanyan.bundleenchantments;
 
+import com.chromanyan.bundleenchantments.init.ModEnchantments;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,6 +29,8 @@ public class BundleEnchantments
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+
+        ModEnchantments.ENCHANTMENTS_REGISTRY.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
