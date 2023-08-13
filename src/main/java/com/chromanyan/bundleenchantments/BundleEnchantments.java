@@ -1,11 +1,13 @@
 package com.chromanyan.bundleenchantments;
 
+import com.chromanyan.bundleenchantments.config.ModConfig;
 import com.chromanyan.bundleenchantments.init.ModEnchantments;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -31,6 +33,8 @@ public class BundleEnchantments
         modEventBus.addListener(this::commonSetup);
 
         ModEnchantments.ENCHANTMENTS_REGISTRY.register(modEventBus);
+        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.commonSpec);
+        modEventBus.register(ModConfig.class);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

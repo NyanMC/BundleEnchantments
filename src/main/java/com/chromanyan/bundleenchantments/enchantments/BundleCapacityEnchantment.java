@@ -1,5 +1,6 @@
 package com.chromanyan.bundleenchantments.enchantments;
 
+import com.chromanyan.bundleenchantments.config.ModConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -7,6 +8,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class BundleCapacityEnchantment extends Enchantment {
+
+    private static final ModConfig.Common config = ModConfig.COMMON;
 
     public BundleCapacityEnchantment() {
         super(Enchantment.Rarity.RARE, EnchantmentCategory.VANISHABLE, EquipmentSlot.values());
@@ -26,7 +29,7 @@ public class BundleCapacityEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 4;
+        return config.bundleCapacityMaxLevel.get();
     }
 
     @Override

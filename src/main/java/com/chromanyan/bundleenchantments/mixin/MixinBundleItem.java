@@ -1,5 +1,6 @@
 package com.chromanyan.bundleenchantments.mixin;
 
+import com.chromanyan.bundleenchantments.config.ModConfig;
 import com.chromanyan.bundleenchantments.init.ModEnchantments;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -22,12 +23,14 @@ import java.util.Optional;
 @Mixin(BundleItem.class)
 public class MixinBundleItem {
 
+    private static final ModConfig.Common config = ModConfig.COMMON;
+
     private static int getMaxWeight(ItemStack stack) {
-        return BundleItem.MAX_WEIGHT + (stack.getEnchantmentLevel(ModEnchantments.BUNDLE_CAPACITY.get()) * 16);
+        return BundleItem.MAX_WEIGHT + (stack.getEnchantmentLevel(ModEnchantments.BUNDLE_CAPACITY.get()) * config.bundleCapacityItemsPerLevel.get());
     }
 
     private static boolean isBundleEnchanted(ItemStack stack) {
-        return stack.getEnchantmentLevel(ModEnchantments.BUNDLE_CAPACITY.get()) > 0;
+        return stack.getEnchantmentLevel(ModEnchantments.BUNDLE_CAPACITY.get()) > 0 && !config.allowIllegalStacks.get();
     }
 
     @ModifyConstant(method = "getFullnessDisplay", constant = @Constant(floatValue = 64.0F))
