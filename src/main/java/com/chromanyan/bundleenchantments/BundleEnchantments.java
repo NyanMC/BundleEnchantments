@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package com.chromanyan.bundleenchantments;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
